@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/status_bar_view_group"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/color_FFFFFF" />
+    <com.like.base.widget.AutoWidthTabLayout
+        android:id="@+id/tab_home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:tabIndicatorColor="@color/theme"
+        app:tabIndicatorHeight="3dp"
+        app:tabSelectMode="true"
+        app:tabSelectTextColor="@color/theme"
+        app:tabSelectTextSize="20"
+        app:tabIndicatorShow="true"
+        app:tabTextColor="@color/fontColor1"
+        app:tabTextSize="16"
+        app:tab_Mode="mode_fixed" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

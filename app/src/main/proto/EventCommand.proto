@@ -1,0 +1,23 @@
+syntax = "proto3";
+package com.lyh.protocol;
+option java_package="com.lyh.protocol.cmd";
+
+enum EventCommandType{
+    NONE=0;
+	//public static int GATE_SERVER = 1;
+	//public static int GAME_SERVER = 2;
+	//public static int WORLD_SERVER = 3;
+	//public static int LOGIN_SERVER = 4;
+	//public static int PUBLIC_SERVER = 5;
+	//public static int LOG_SERVER = 6;
+	//public static int CLIENT = 7;
+	//public static int DB_SERVER = 8;
+	//public static int CENTER_SERVER = 9;
+	
+	//游戏事件 0x01000000-0xFF000000
+	LEAVE_TABLE_EVENT=0x1000000;//离开房间 
+	
+
+	
+
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <ViewStub
+        android:id="@+id/root_vstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/root_view"/>
+
+    <ViewStub
+        android:id="@+id/error_vstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/error_layout"
+        android:layout="@layout/error_layout"/>
+
+    <ViewStub
+        android:id="@+id/noworknet_vstub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/nonet_layout"
+        android:layout="@layout/noworknet_layout"/>
+</LinearLayout>

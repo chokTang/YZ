@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BezierView">
+        <!--水位上升动画的执行时间-->
+        <attr name="duration1" format="integer"/>
+        <!--水波周期移动动画的执行时间-->
+        <attr name="duration2" format="integer"/>
+        <!--水波高度-->
+        <attr name="waveHeight" format="integer"/>
+        <!--水波长度-->
+        <attr name="waveWidth" format="integer"/>
+        <!--初始点Y坐标，即水位初始位置-->
+        <attr name="originY" format="integer"/>
+        <!--背景圆的颜色-->
+        <attr name="cirColor" format="color"/>
+        <!--背景圆的轮廓的颜色-->
+        <attr name="cirSideColor" format="color"/>
+    </declare-styleable>
+</resources>

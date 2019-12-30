@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--fragment滑动卡牌自定义显示属性-->
+    <declare-styleable name="viewpageIndicator">
+        <attr name="visible_tab_count" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color"/>
+        <attr name="mroundColor" format="color"/>
+        <attr name="circleColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="mroundWidth" format="dimension"></attr>
+        <attr name="circleR" format="dimension"></attr>
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="gesture">
+        <!--最少连接点数量-->
+        <attr name="minTracePoint" format="integer" />
+        <!--被选中时的颜色-->
+        <attr name="selectColor" format="color|reference" />
+        <!--未被选中时的颜色-->
+        <attr name="unSelectColor" format="color|reference" />
+        <!--是否有震动效果-->
+        <attr name="vibrate" format="boolean" />
+        <!--内部圆半径-->
+        <attr name="innerRadius" format="dimension|reference" />
+        <!--外部圆半径-->
+        <attr name="outRadius" format="dimension|reference" />
+        <!--线宽度-->
+        <attr name="lineWidth" format="dimension|reference" />
+        <!--圆圈线宽度-->
+        <attr name="circleLineWidth" format="dimension|reference" />
+        <!--圆圈之间的margin-->
+        <attr name="margin" format="dimension|reference" />
+        <!--显示错误轨迹的颜色-->
+        <attr name="errorColor" format="color|reference" />
+        <!--是否显示错误轨迹-->
+        <attr name="showErrorTrace" format="boolean" />
+
+    </declare-styleable>
+</resources>

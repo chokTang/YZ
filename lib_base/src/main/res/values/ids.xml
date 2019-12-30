@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="normal_id" type="id"></item>
+    <item name="error_id" type="id"></item>
+    <item name="empty_id" type="id"></item>
+    <item name="nonet_id" type="id"></item>
+</resources>

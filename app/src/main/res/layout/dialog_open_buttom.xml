@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_open_buttom"
+    android:layout_height="@dimen/dp_120">
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/tv_open_qr"
+        android:layout_width="match_parent"
+        android:text="掃描二維碼"
+        android:gravity="center"
+
+        android:drawablePadding="@dimen/dp_10"
+        android:textSize="@dimen/sp_16"
+        android:textColor="#0C0C0C"
+        android:layout_height="@dimen/dp_59" />
+
+    <View
+        android:id="@+id/view_line"
+        android:background="#D1D1D1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"/>
+    <TextView
+        android:id="@+id/tv_open_pic"
+        android:layout_width="match_parent"
+        android:text="從相冊中選擇二維碼"
+        android:gravity="center"
+       android:drawablePadding="@dimen/dp_10"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/sp_16"
+        android:textColor="#0C0C0C"
+        android:layout_height="@dimen/dp_60" />
+
+
+</LinearLayout>

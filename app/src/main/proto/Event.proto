@@ -1,0 +1,12 @@
+syntax = "proto3";
+package com.lyh.protocol;
+option java_package = "com.lyh.protocol.game.event";
+//import "PublicData.proto";
+
+//LEAVE_TABLE_EVENT=0x1000000;//离开房间
+//message LeaveTableEvent{
+//	int64 userId=1;//玩家id
+//	int64 roomId=2;//房间id
+//	int32 type=3;//离开类型
+	
+//}

@@ -1,0 +1,58 @@
+syntax = "proto3";
+package com.lyh.protocol;
+option java_package = "com.lyh.protocol.login";
+import "PublicData.proto";
+
+
+
+//C_L_COMMON_LOGIN_REQUEST=0x00001;//普通登录
+message CommonLoginReqeust{
+	 string deviceId=2;//设备Id 惟一码,有多个中间用逗号隔开
+	 string channelId=3;//渠道号
+	 string deviceType=4;//设备类型,android=1,IOS=2,web=3
+	 string deviceName=5;//设备型号和名称 opp xxx,iphonex7等
+	 string realIP=6;//真实ip
+	 string cvId=7;//粘贴数据(上级邀请码,代理邀请码,与渠道id)
+	 string password=8;//登录密码第二次登录必须要
+}
+//L_C_COMMON_LOGIN_RESPONSE=0x00002;//普通返回
+message CommonLoginResponse{
+	ResponseResult result = 1;//返回结果
+	string password = 2;//初始位置登录密码
+	int32 openSizer = 3;//1-打开筛选 其余就不打开
+}
+
+//C_L_GET_LOGIC_IP_REQUEST=0x00003;//获取IP
+message GetLogicIpRequest{
+	string token=1;//令牌
+}
+//L_C_GET_LOGIC_IP_RESPONSE=0x00004;//获取IP返回
+message GetLogicIpResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ServerListDataProto sList=3;//服务器列表
+}
+
+//C_L_MOBILE_LOGIN_REQUEST=0x00005;//手机登录请求
+message MobileLoginRequest{
+	string mobile=1;//手机号
+	string password=2;//密码
+	string realIp=3;//真实ip
+	string channelId=4;//渠道号
+}
+
+//L_C_MOBILE_LOGIN_RESPONSE=0x00006;//返回手机登录
+message MobileLoginResponse{
+	ResponseResult result = 1;//返回结果
+}
+	
+//C_L_GET_LOGIN_ADVERTISEMENT_LOADING_IMG_REQUEST=0x00007;//获取广告图加载页面的请求
+message GetLoginAdvertisementLoadingImgReqeust{
+	string token=1;//令牌
+}
+//L_C_GET_LOGIN_ADVERTISEMENT_LOADING_IMG_RESPONSE=0x00008;//获取广告图加载页面图的返回
+message GetLoginAdvertisementLoadingImgResponse{
+	ResponseResult result = 1;//返回结果
+	string imgUrl=2;//广告地址
+}
+
+/////////////////////////////////////////////////////////////

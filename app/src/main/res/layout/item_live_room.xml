@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/bg_live_room_1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="107dp">
+
+            <com.itheima.roundedimageview.RoundedImageView
+                android:id="@+id/img_pic"
+                android:layout_width="82dp"
+                android:layout_height="82dp"
+                android:layout_centerInParent="true"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_pic"
+                app:riv_corner_radius="82dp"
+                app:riv_oval="false" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="6dp"
+            android:drawableLeft="@mipmap/icon_video_1"
+            android:drawablePadding="3dp"
+            android:text="13653"
+            android:textColor="#ff0000"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:maxLength="20"
+        android:maxLines="2"
+        android:text="法拉科技疯狂拉"
+        android:textColor="@color/black"
+        android:textSize="13sp" />
+
+</LinearLayout>

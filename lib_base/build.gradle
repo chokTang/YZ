@@ -1,0 +1,115 @@
+apply plugin: 'com.android.library'
+
+def cfg = rootProject.ext.configuration//配置
+def libs = rootProject.ext.libraries//库
+def third = rootProject.ext.third//第三方库
+
+android {
+    compileSdkVersion cfg.compileVersion
+    buildToolsVersion cfg.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true //是否混淆
+            buildConfigField("boolean", "LOG_DEBUG", "false")
+            buildConfigField("String", "QQ_APPID", "\"${third.QQ_APPID}\"")
+            buildConfigField("String", "WX_APPID", "\"${third.WX_APPID}\"")
+            buildConfigField("String", "WX_SECRET", "\"${third.WX_SECRET}\"")
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    qq_appid: third.QQ_APPID
+            ]
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            buildConfigField("String", "QQ_APPID", "\"${third.QQ_APPID}\"")
+            buildConfigField("String", "WX_APPID", "\"${third.WX_APPID}\"")
+            buildConfigField("String", "WX_SECRET", "\"${third.WX_SECRET}\"")
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    qq_appid: third.QQ_APPID
+            ]
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation "com.android.support.test:runner:${libs.runner}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${libs.espresso_core}"
+    testImplementation "junit:junit:${libs.junitVersion}"
+
+    api project(':lib_util')
+
+    /*support依赖库*/
+    api "com.android.support:design:${libs.supportVersion}"
+    api "com.android.support:recyclerview-v7:${libs.supportVersion}"
+    api "com.android.support:appcompat-v7:${libs.supportVersion}"
+    api "com.android.support.constraint:constraint-layout:${libs.constraint}"
+
+    /*上拉刷新下拉更多框架*/
+    api "com.scwang.smartrefresh:SmartRefreshLayout:${libs.SmartRefreshLayout}"
+
+    /*字体图片框架开始*/
+    api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
+    api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
+
+    /*fragment库的依赖*/
+    api "me.yokeyword:fragmentation:${libs.fragmentation}"
+    api "me.yokeyword:fragmentation-swipeback:${libs.fragmentation}"
+
+    /*网络请求框架*/
+    api "com.squareup.retrofit2:retrofit:${libs.retrofit2}"
+    api "com.squareup.retrofit2:converter-scalars:${libs.retrofit2}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${libs.retrofit2}"
+    api "com.squareup.retrofit2:converter-gson:${libs.retrofit2}"
+    api "com.squareup.retrofit2:converter-scalars:${libs.retrofit2}"
+
+    /*Rxjava框架*/
+    api "io.reactivex.rxjava2:rxandroid:${libs.rxjava2}"
+    api "io.reactivex.rxjava2:rxjava:${libs.rxjava2}"
+
+    /*微信依赖*/
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    /*状态栏依赖包*/
+    api ('com.github.niorgai:StatusBarCompat:2.1.4',{
+        exclude group: 'com.android.support'
+    })
+
+    /*系统异常奔溃日志*/
+    api 'com.zxy.android:recovery:0.1.4'
+
+    /*wheel组件*/
+    implementation 'com.contrarywind:wheelview:4.0.8'
+
+    /*图片裁剪工具类库*/
+    api('org.devio.takephoto:takephoto_library:4.1.0') {
+        exclude group: 'com.github.bumptech.glide', module: 'glide'
+    }
+
+    //沉浸式状态栏
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    //內存泄漏检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    /*eventbus*/
+    api "org.greenrobot:eventbus:${libs.eventbus}"
+
+    //protobuf 依賴
+    api 'com.google.protobuf:protobuf-java:3.6.1'
+    api 'com.squareup.retrofit2:converter-protobuf:2.4.0'
+}

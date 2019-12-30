@@ -1,0 +1,22 @@
+syntax = "proto3";
+package com.lyh.protocol;
+option java_package = "com.lyh.protocol";
+
+
+message InnerMessage
+{
+	 int32 command = 1;
+	 bytes body = 2;
+	 string clientSessionId = 3;//客户端sessionid
+	 int32 targetServeTypeId = 4;//网关类型id
+	 int32 srcServeTypeId=5;//源id
+	 string remoteIp=6;//远程ip
+	 int64 userId = 7;//用户Id
+	
+}
+
+message NetMessage
+{
+	 int32 command = 1;
+	 bytes body = 2;
+}

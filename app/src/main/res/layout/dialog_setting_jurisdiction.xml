@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_corner"
+    android:layout_marginLeft="@dimen/dp_21"
+    android:layout_marginRight="@dimen/dp_20"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/li_bank_verification"
+
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/corner_dialog_setting_jurisdiction"
+        android:layout_height="wrap_content">
+
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:background="#F5F5F5"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textColor="@color/color_EF373A"
+                android:text="溫馨提示"
+                android:textSize="@dimen/dp_20"
+                android:layout_height="@dimen/dp_50" />
+
+
+
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_9"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:text="必須要存儲權限才能下載更新包"
+            android:background="@color/white"
+            android:textColor="@color/color_1a1a1a"
+            android:gravity="center"
+            android:textSize="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_cancle"
+                android:textSize="@dimen/dp_16"
+                android:textColor="@color/color_808080"
+                android:text="取消"
+                android:gravity="center"
+                android:background="#F5F5F5"
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="1px"
+                android:background="@color/gray_9"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:id="@+id/btn_sure"
+                android:textSize="@dimen/dp_16"
+                android:textColor="@color/white"
+                android:text="去設置"
+                android:gravity="center"
+
+
+                android:background="@color/color_EF373A"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

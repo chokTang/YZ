@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="105dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上級邀請碼"
+            android:textColor="#5A5A5A"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/edt_yqm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="35dp"
+            android:background="@null"
+            android:maxLines="1"
+            android:maxLength="6"
+            android:inputType="text"
+            android:hint="請輸入上級邀請碼"
+            android:textColorHint="@color/common_color_97"
+            android:textSize="14sp"
+            android:textColor="@color/common_color_97"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@color/dividerColor"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="註：綁定後無法修改，請謹慎輸入"
+        android:textColor="@color/color_FF0004"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="160dp"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/tv_binding"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:background="@drawable/bg_theme_21"
+        android:text="綁定"/>
+
+</LinearLayout>

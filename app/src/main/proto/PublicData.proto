@@ -1,0 +1,304 @@
+syntax = "proto3";
+
+package com.lyh.protocol;
+option java_package = "com.lyh.protocol.data";
+
+enum PbAoiEntityType
+{
+	//Notice:枚举型在其他proto中作为字段时，必须赋予默认值，否则客户端编译报错。eg: PbAoiEntityType type = 2 [default = None];// 释放者类型
+	None = 0;//none
+
+}
+
+message DbDataProto{
+	 int64 dataId = 1;//数据id
+	 string className = 2;//类名
+	 bytes content = 3;//内容
+	 int32 bzip=4;//是否压缩，1为真
+}
+
+//玩家数据
+message PlayerDataProto{
+	 string playerId=1;//玩家id
+	 string money=2;//金钱
+	 int32 headIndex=3;//头像索引
+	 string name =4;//名字
+	 string url=5;//sdk第三方头像地址
+	 int32 sex=6;//性别
+	 string safeMoney=7;//保险箱金币
+	 string mobile=8;//手机号码
+	 string aliPayCardNum=9;//支付宝帐号
+	 string bankCardNum=10;//银行卡帐号
+	 int32 guideStatus=11;//新手引导    0:新手  1:跳过  2:完成 
+}
+
+//服务器id集
+message ServerTypeIdDataProto{
+	 int32 gateServerTypeId=1;//所在网关服务器id
+	 int32 worldServerTypeId=2;//世界服务器id
+	 int32 logServerTypeId=3;//log服务器Id
+	 int32 gameServerTypeId=4;//逻辑服务器id 
+	 int32 dbServerTypeId=5;//数据库服务器id
+	 int32 centerServerTypeId=6;//中心服务器id
+	 int64 roleId=7;//角色id
+	 string openId=8;//用户账号
+	 int32 platformServerTypeId=9;//平台通信服务器
+	 int32 quartzJobServerTypeId=10;//定时器服务器
+}
+
+message ServerListDataProto{
+	 string serverName=1;//服务器名字
+	 string hostName=2;//主机名
+	 string portAndPath=3;//端口和路径
+	 int32 serverStatus=4;//1正常,2维护,0关闭
+
+}
+
+
+message ResponseResult{
+	int32 result=1;//1=成功
+	string msg=2;//结果信息 
+	string token=3;//令牌
+}
+//喇叭消息
+message TrumpetData{
+	 int64 dataId = 1;//数据id
+	 string content = 2;//内容
+	 int32 time=3;//间隔时间分钟
+	 int32 frequency=4;//次数
+}
+
+//广告内容
+message AdvertisingData{
+	 string pictureAddress = 1;//图片地址
+	 string externalAddress = 2;//外部地址
+	 string describe = 3;//描述 可能为null就不显示 怎么显示请看美术
+	 int32 goWhere = 4;//1-外部链接 2-内部
+	 string androidAdress = 5;//android跳转
+	 string iosAdress = 6;//ios跳转
+	 int64 id = 7;//广告ID
+}
+
+//推荐页数据
+message RecommendData{
+	 repeated ClassifyVideoData videoData=1;//视频数据
+	 repeated AdvertisingData recommendBanner=2;//每一个分类下的广告 null则没有
+	 string recommendName=3;//大类的名称
+	 int64 dataId = 4;//推荐分类的ID
+	 int32 isMore = 5;//是否更多 1-是
+	 int32 type = 6;//1-国产 2日韩 3欧美
+}
+
+//视频分类
+message ClassifyVideoData{
+	 string pictureAddress = 1;//图片地址
+	 int32 IsCollect = 2;//是否收藏 1-是
+	 string videoName = 3;//视频名称
+	 int32 IsFreeOfCharge = 4;//是否免费
+	 int64 videoId = 5;//视频ID
+	 string videoTime = 6;//视频时间
+	 string upTime = 7;//上传时间
+	 string giveMark = 8;//评分
+	 string playNum = 9;//播放次数
+	 int32 openSvga = 10;//1-开启svge
+	 string svgeAdress = 11;//svge地址
+	 
+}
+
+//最新和排行的类
+message NewestVideoData{
+	 string pictureAddress = 1;//图片地址
+	 int32 IsCollect = 2;//是否收藏 1-是
+	 string videoName = 3;//视频名称
+	 int64 videoId = 4;//视频ID
+	 string upTime = 5;//上传时间
+	 string playNum = 6;//播放次数
+	 repeated AdvertisingData newestBanner=7;//如果不为null则该视频下接入广告
+	 string videoTime = 8;//视频时间
+	 string giveMark = 9;//评分
+	 int32 openSvga = 10;//1-开启svge
+	 string svgeAdress = 11;//svge地址
+}
+
+//专题分类
+message SpecialData{
+	 string pictureAddress = 1;//图片地址
+	 string name = 2;//名称
+	 int64 specialId = 3;//专题ID
+	 repeated AdvertisingData specialBanner=7;//如果不为null则该专题下接入广告
+}
+
+//三大类数据
+message ThreeBigVideoData{
+	 repeated ClassifyVideoData videoData=1;//视频数据
+	 string recommendName=2;//大类的名称
+	 int64 dataId = 3;//推荐分类的ID
+}
+
+//播放视频数据
+message PlayVideoData{
+	 repeated ClassifyVideoData videoData=1;//视频数据
+	 repeated AdvertisingData playBanner=2;//如果不为null 广告
+	 string videoName=3;//视频的名称
+	 string videoTime = 4;//视频的时间
+	 string videoPlayNum = 5;//视频播放次数	
+	 int32 IsCollect = 6;//是否收藏 1-是
+	 int32 isVip = 7;//是否VIP 1-是
+	 string videoPlayUrl = 8;//播放地址
+	 int32 autoPlay = 9;//1-当前为自动播放 2-当前为不自动播放
+	 string intro = 10;//视频介绍
+	 string upTime = 11;//上传时间
+	 string likeNumber = 12;//踩次数
+	 string trampleNumber = 13;//点赞次数
+	 string giveMark = 14;//评分
+	 int32 likeToTrample =15;//0-都不亮 1-点赞高亮 2-踩高亮 
+	 int32 screenSize =16;//1-窄屏
+}
+
+//用户信息
+message ApiUserData{
+	 int64 apiUserId=1;//用户ID
+	 int64 parentId=2;//上级ID
+	 string vipTime=3;//vip时间
+	 int32 isBind=4;//账号是否绑定 1-是
+	 string myInviteCode=5;//邀请码
+	 int32 isNewMessage=6;//是否有新消息 1-是
+	 int32 isShowBindInviteCode=7;//是否显示绑定邀请码 1-是
+	 string chatUrl=8;//聊天链接
+	 string mobile=9;//绑定后才有数据 手机号
+	 string welfare =10;//福利地址
+	 repeated ClassifyVideoData collectVideo=11;//收藏视频
+	 repeated ClassifyVideoData historyVideo=12;//视频
+	 string headImg = 13;//头像
+     string key=14;//二维码字符串
+     string homeUrl=15;//官网
+
+}
+//用户消息
+message ApiUserMessage{
+	 string messageTime=1;//消息时间
+	 string content=2;//内容
+}
+//二维码数据
+message QrCodeData{
+	 string qrCodeUrl=1;//二维码图片地址
+	 string inviteCode=2;//邀请码
+	 string generalizeUrl=3;//推广地址
+}
+
+//邀请任务数据
+message InviteData{
+	 int32 addUpNum=1;//累计人数
+	 int32 type=2;//1-未完成 2-可以领取 3-已领取
+	 string vipTime=3;//奖励VIP时间
+	 int64 inviteNum=4;//已经邀请人的数
+	 int64 dataId=5;//任务ID
+}
+//普通任务数据
+message CommomData{
+	 int32 taskType=1;//绑定手机=1,点击广告3次=2,保存二维码=3,观看视频时间=4,观看直播次数=5
+	 int32 needNum=2;//需要操作的次数
+	 int64 alreadyNum=3;//已经操作的次数
+	 int32 type=4;//1-未完成 2-可以领取 3-已领取
+	 string vipTime=5;//奖励VIP时间
+	 int64 dataId=6;//任务ID
+}
+
+//普通充值数据
+message NormalTopUpData{
+	 repeated IntData paySort=1;//充值编号的排序 1-支付宝 2-其他 3-微信 4-人工
+	 int64 userId=3;//用户ID  
+	 string vipTime=4;//vip时间  
+}
+//int数组数据
+message IntData{
+	 int32 val=1;
+	 repeated PayTypeData data=2;//支付类型数据
+}
+//int64数据
+message LongData{
+	 int64 val=1;
+}
+//卡密充值数据
+message KaMiData{
+	 repeated PayMoneyData payMoney=1;//  制作展示用
+	 repeated TouchData touch=2;//  联系数据
+	 int64 userId=3;//用户ID  
+	 string vipTime=4;//vip时间  
+}
+
+//联系数据
+message TouchData{
+	 int32 type=1;//1-qq 2-wx 
+	 string data=2;//具体东西  
+}
+
+//支付类型数据
+message PayTypeData{
+	string name=1;//支付名称
+	int32 type=2;//0 是公众号支付 1 是app支付 2是网页支付
+	string orderUrl=3;//下订单的地址 组装?userId=1&payMoneyId=1
+	string hintMessege=4;//提示消息
+	int32 serialNumber=5;//编号 1-支付宝 2-微信 3-银联 4-人工
+	repeated string qq=6;//qq
+	repeated PayMoneyData payMoney=7;//支付金额数据
+	string isPayUrl=8;//订单状态确认地址?orderNo
+}
+
+//支付金额数据
+message PayMoneyData{
+	string topUpPrice=1;//充值金额
+	int64 originalPrice=2;//原价
+	int64 vipTime=3;//对应的VIP时间 分钟	
+	string dayDescribe=4;//天数描述
+	string introduce=5;//介绍
+	int32 lable=6;//标签 1, "体验" 2, "尝鲜" 3, "推荐" 4, "最火" 5, "优惠" 6, "超值"
+	int64 payMoneyId=7;//支付金额的ID
+	string buyDescribe=8;//购买描述
+	int32  option=9;//默认选中
+}
+//充值记录
+message RechargeRecordData{
+	string  name=1;//描述
+	string money=2;//金额 卡密没有
+	int32 type=3;//1-支付宝 2-银联 3-微信 4-人工 5卡密
+	string serialNumber=4;//编号
+	string time=5;//交易时间
+	int32 status=6;//1=成功 0-失败
+}
+//公告
+message NoticeData{
+	string title=1;//标题
+	string time=2;//时间
+	string content=3;//内容
+}
+
+//主播
+message AnchorData{
+	int32 watchTv=1;//观看人数
+	int32 isFree=2;//是否免费
+	string bannerImg=3;//图片
+	string name=4;//名称
+	string address=5;//播放地址
+	repeated AdvertisingData LiveBanner=6;//如果不为null 广告
+	int32 isVip=7;//当前页
+}
+
+//平台
+message PlatformData{
+	string liveNum=1;//直播人数
+	string bannerImg=2;//图片
+	string platform=3;//请求直播传改参数
+	string name=4;//名称
+	repeated AdvertisingData LiveBanner=5;//如果不为null 广告
+}
+
+//筛选的数据
+message FilterSilgeData{
+	string id=1;//id
+	string name=2;//标签的名称
+}
+//筛选的数据
+message FilterListData{
+	repeated FilterSilgeData listData = 1;//单个少选的数据
+}

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/status_bar_view_group"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/color_FFFFFF" />
+    <LinearLayout
+        android:id="@+id/li_top_one"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_13"
+        android:gravity="center_vertical"
+        android:layout_marginRight="@dimen/dp_19"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/li_back"
+            android:layout_width="@dimen/dp_60"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/im_back"
+                android:scaleType="centerCrop"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:background="@drawable/bg_gray_11_theme_strock"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/dp_8"
+            android:paddingRight="@dimen/dp_9"
+            android:layout_marginRight="@dimen/dp_30"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/dp_26">
+
+            <ImageView
+                android:id="@+id/img_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_search"
+                android:layout_marginStart="@dimen/dp_5"/>
+
+            <com.like.base.widget.ClearEditText
+                android:id="@+id/edt_search_keywords"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:hint="輸入關鍵詞查找片源"
+                android:gravity="center|left"
+                android:layout_marginLeft="@dimen/dp_9"
+                android:background="@null"
+                android:textColor="@color/color_ff707070"
+                android:textSize="@dimen/sp_10"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:text="搜索"
+            android:textColor="@color/color_434343"
+            android:textSize="@dimen/sp_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_hot_search"
+        android:layout_below="@+id/view_line"
+        android:text="熱門搜索"
+        android:textSize="@dimen/sp_12"
+        android:layout_marginTop="@dimen/dp_28"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_22"
+        android:textColor="@color/color_434343"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.cy.cyflowlayoutlibrary.FlowLayoutScrollView
+        android:id="@+id/fl_hot_search"
+        android:layout_below="@+id/tv_hot_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/sp_10"
+        android:paddingBottom="@dimen/sp_10"
+        android:paddingRight="@dimen/sp_10"
+        android:paddingLeft="@dimen/dp_30"
+        app:height_space="10dp"
+        app:width_space="10dp">
+
+    </com.cy.cyflowlayoutlibrary.FlowLayoutScrollView>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_below="@+id/fl_history_search"
+        android:background="@color/color_D9D9D9"
+        android:layout_marginTop="@dimen/dp_27"
+        android:layout_marginBottom="@dimen/dp_21"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+
+
+    <TextView
+        android:layout_below="@+id/li_top_one"
+        android:id="@+id/tv_history_search"
+
+        android:text="歷史搜索"
+        android:textSize="@dimen/sp_12"
+        android:layout_marginTop="@dimen/dp_28"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_22"
+        android:textColor="@color/color_434343"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <com.cy.cyflowlayoutlibrary.FlowLayoutScrollView
+        android:layout_below="@+id/tv_history_search"
+        android:id="@+id/fl_history_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/sp_10"
+        android:paddingBottom="@dimen/sp_10"
+        android:paddingRight="@dimen/sp_10"
+        android:paddingLeft="@dimen/dp_30"
+        app:height_space="10dp"
+        app:width_space="10dp">
+
+    </com.cy.cyflowlayoutlibrary.FlowLayoutScrollView>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn_delete_search"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="@dimen/dp_44"
+        android:layout_marginStart="@dimen/dp_44"
+        android:text="刪除所有歷史搜索記錄"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/color_FFFFFF"
+        android:textSize="@dimen/sp_16"
+        android:background="@drawable/bg_theme_21"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dp_17"
+        android:layout_height="@dimen/dp_42" />
+
+</RelativeLayout>

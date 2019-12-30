@@ -1,0 +1,131 @@
+﻿p该框架说明
+1、网络请求框架是用的是rxjava2+rxandroid2+retrofit2 备注：rxjava2文档地址：http://reactivex.io/RxJava/2.x/javadoc/
+https://www.jianshu.com/p/bf884248cb37/
+2、图片请求框架使用的是Glide
+3、视图刷新框架使用的是com.dalong:refreshlayout:1.0.3 支持任何视图的刷新和上拉加载更多 https://github.com/dalong982242260/PullRefresh
+4、项目中使用到的字体图标资源框架：https://github.com/JoanZapata/android-iconify
+5、fragment库的依赖 https://github.com/YoKeyword/Fragmentation
+6、数据库用到的greedao chrome://inspect/#devices
+7、webView介绍：https://www.jianshu.com/p/a6f7b391a0b8
+
+备注说明：activity和fragment的启动模式
+singleTop：表示如果当前activity处于栈顶的位置的时候，你在想打开此activity，此时activity会调用起onNewIntent的方法，调用原来的activity。操作相当于连续打开此acitivity2次
+standard：默认的启动模式
+singleTask：表示只会有实例化一个activity对象。若打开一次次activity，再次打开此Activity的时候，在此activity第一次打开的地方与此activity第二次打开的地方，这之间的activity
+堆栈将会被销毁。
+
+----------------------音视频学习开始--------------------------------
+音频采集四个概念：
+采样率：8KHZ
+位宽：单声道？双声道 2
+声道数：4,8,16,32等等
+音频帧：就是多少时间为一帧，一般是20ms为一帧
+大小的计算：8000*2*16*0.02=5120bit /8=640bye
+
+图像采集：
+分辨率：长*宽 例如:1280*720
+采样频率：例如：30ms帧每秒
+采样格式：YUV420SP格式、
+传输通道：
+大小的计算：一帧：1280*720*1.5bit(固定的)=1382400bit /8=172800bye=172Kb
+            1秒的数据有：172Kb*30 =5160KB=5M
+
+采集源：
+摄像头
+屏幕录制
+文件推流
+
+一、视频采集
+android采集：                           IOS采集：                           服务器端采集：
+setPreviewCallback                      AVFoundation.framework             mjpeg-streamer
+MediaRecorder                                                              摄像头
+注意：机型适配
+
+二、视频前处理
+视频处理内容：
+    美颜：美白等等
+    滤镜[GPUImage开源库]
+    水印：一般处理公司的logo
+    磨皮
+音频处理内容：
+    混音：音频信号的叠加，采样值溢出的处理，主要对声音的振幅进行处理
+    降噪：傅里叶变换
+    变声：音色、音调 soundTouch框架来处理
+    特效
+三、直播的编码和封装
+编码的意义：
+    压缩数据存储空间，减少传输时间。
+编码的原理：
+    空间冗余：相邻像素之间的相关性
+    时间冗余：相邻图像之间内容相似
+    编码冗余：像素值出现的概率不同
+    视觉冗余：视觉对细节的不敏感
+常见的图像编码器有：
+    h264,h265,vp8,vp9
+    H264编码知识：
+        NALU:网络提取单元
+        SPS:包括了一个图像序列的所有信息
+        PPS:包括了一个图像所有片的信息
+        I帧：帧内编码帧
+        P帧：前向预测编码帧
+        B帧：双向预测编码帧
+ 常见的音频编码器有：
+    AAC,PCM,WAV,OGG
+    封装格式有：FLV,TS,AVI等
+ 四、推流与优化
+    RTMP：
+        优点：CDN支持良好，协议简单实现
+        缺点：基于TCP，传输成本高，Adobe私有协议
+    WebRTC：
+        优点：W3C标准，基于UDP
+        缺点：CDN支持较差
+    UDP自定义协议：综合上面2个，自己定义写。
+    优化：
+        优先保证音频传输
+        调整编码率、FPS、分辨率
+ 五、服务器端转码处理
+    转码：
+ 六、客户端播放
+
+备注：编码的意义，就是把每秒的数据压缩到最低
+
+采用腾讯云来集成
+
+补充：
+音视频基础知识：
+一、视频流的播放流程（与音频流的播放流程一样，详细见-音视频-播放流程.png）
+              封装格式数据-----<mp4、MKV、FLV等等格式的数据文件>
+                              || ||
+              解封装格式------<开始把封装格式解封成视频压缩数据>
+                              || ||
+              视频压缩数据-----<通过解封装步骤，拿到视频压缩的h265、h264等等数据>
+                              || ||
+              视频解码--------<把拿到的解封装的数据进行解码处理>
+                              || ||
+              视频像素数据-----<通过解码处理，得到YUV等等的像素数据>
+                              || ||
+              然后通过音视频同步-----调用设备串口进行播放
+二、音视频
+----------------------音视频学习结束--------------------------------
+
+----------------------rxjava2学习开始-----------------------------------
+https://www.jianshu.com/p/0cd258eecf60
+被观察者， Observable 由它创建发射器
+
+map：拦截器，处理在 被观察者【Observable】事件发出来以后，处理发出来的内容。
+concat :合并多个被观察者 只有当第一个被观察者发出来了onComplete(),以后才会执行下一个被观察者的事件。 如果没有走onComplete()则下一个
+        被观察者不会走，且最后的观察着的onComplete() 事件只走一次。适用于，多个网络请求的时候，中断了一个，其他的都不请求了。
+flatMap:有点类似于concat 但是flatMap是依次执行下一次的被观察者【Observable】事件，不需要上一次的onComplete()
+zip : 合并多个 被观察者【Observable】 事件，然后统一的发出一个观察者对象。
+
+观察者，Observer  由它创建消费器
+种类有：
+      Consumer  单个消费器 只能传递一个值过来
+
+
+----------------------rxjava2学习结束-----------------------------------
+
+------python学习--------------
+https://github.com/jackfrued/Python-100-Days
+------python学习--------------
+

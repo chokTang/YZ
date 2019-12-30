@@ -1,0 +1,251 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.protobuf'
+
+def cfg = rootProject.ext.configuration//配置g
+def libs = rootProject.ext.libraries//库
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion cfg.buildToolsVersion
+    defaultConfig {
+        applicationId cfg.package
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode cfg.version_code
+        versionName cfg.version_name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        flavorDimensions "versionCode"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
+        }
+
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/main/java'
+            }
+            proto {
+                srcDir 'src/main/proto'
+            }
+        }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/rxjava.properties'
+        packagingOptions {
+            pickFirst 'lib/x86/libijksdl.so'
+            pickFirst 'lib/x86/libijkplayer.so'
+            pickFirst 'lib/x86/libijkffmpeg.so'
+            pickFirst 'lib/armeabi-v7a/libijksdl.so'
+            pickFirst 'lib/armeabi-v7a/libijkplayer.so'
+            pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+            pickFirst 'lib/armeabi/libijkplayer.so'
+            pickFirst 'lib/armeabi/libijksdl.so'
+            pickFirst 'lib/armeabi/libijkffmpeg.so'
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'dbtalias'
+            keyPassword 'dbt123456'
+            storeFile file('dabaitu.jks')
+            storePassword 'dbt123456'
+        }
+    }
+
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def formattedDate = new Date().format('MMdd')
+            def formattedMinute = new Date().format('HHmm')
+            def newName
+            if (variant.buildType.name == "release") {
+                newName = ("yz-v-" + variant.versionName + "_release_D" + formattedDate + "_T" + formattedMinute + ".apk")
+            } else {
+                newName = ("yz-v-" + variant.versionName + ".apk")
+            }
+            outputFileName = new File(newName)
+        }
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "BASE_URL_RELEASE", "true"
+//            buildConfigField "boolean", "BASE_URL_RELEASE", "false"
+            minifyEnabled true //是否混淆
+            shrinkResources true //移除无用的资源文件
+            zipAlignEnabled true//是否启用zipAlign压缩
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+//            manifestPlaceholders =[]
+        }
+        debug {
+            buildConfigField "boolean", "BASE_URL_RELEASE", "false"
+//            buildConfigField "boolean", "BASE_URL_RELEASE", "true"
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+
+    dexOptions {
+        jumboMode true
+    }
+}
+
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.builtins {
+                java {}
+                cpp {}
+            }
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation "com.android.support.test:runner:${libs.runner}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${libs.espresso_core}"
+    testImplementation "junit:junit:${libs.junitVersion}"
+    api project(':lib_base')
+
+    /*自动生成库编译*/
+    compileOnly project(':annotationlib')
+    annotationProcessor project(':compilerlib')
+
+    /*轮滑图片或者各种轮滑布局框架*/
+    implementation 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+
+    /*数据库依赖*/
+    implementation "org.greenrobot:greendao-generator:${libs.greendao}"
+    implementation "org.greenrobot:greendao:${libs.greendao}"
+
+    /*数据库升依赖*/
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.4.0'
+
+    /*辅助数据库查看工具*/
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+
+    /*流失布局依赖库*/
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
+
+    /*解决方法数量超过64K的问题*/
+    implementation 'com.android.support:multidex:1.0.3'
+
+    /*时间选择器*/
+    implementation 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //适配器
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
+
+    //完整版引入
+    implementation 'com.shuyu:GSYVideoPlayer:3.0.0'
+    implementation 'com.shuyu:gsyVideoPlayer-armv5:3.0.0'
+    implementation 'com.shuyu:gsyVideoPlayer-armv7a:3.0.0'
+    implementation 'com.shuyu:gsyVideoPlayer-arm64:3.0.0'
+    implementation 'com.shuyu:gsyVideoPlayer-x64:3.0.0'
+    implementation 'com.shuyu:gsyVideoPlayer-x86:3.0.0'
+
+    /*图片框架*/
+    implementation "com.github.bumptech.glide:glide:${libs.glide}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${libs.glide}"
+
+    //glide 网络加载依赖
+    implementation "com.github.bumptech.glide:okhttp3-integration:${libs.glide}"
+    implementation 'com.youth.banner:banner:1.4.10'
+
+    //最新版本
+
+    //banner
+
+    //圆角图片
+    implementation 'com.github.open-android:RoundedImageView:v1.0.0'
+
+    //Zxing
+    implementation 'com.google.zxing:android-core:3.3.0'
+    implementation 'com.google.zxing:core:3.3.2'
+
+    //历史搜索
+    implementation "com.github.AnJiaoDe:MultiFlowLayout:${libraries.MultiFlowLayout}"
+
+    //gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+
+    //cardview
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:cardview-v7:28.0.0'
+
+    // 版本更新
+    implementation "com.king.app:app-updater:${libraries.app_updater}"
+
+    //autosize 自适应
+    implementation 'me.jessyan:autosize:1.1.2'
+
+    //阿里云
+    implementation 'com.aliyun.dpa:oss-android-sdk:+'
+
+    //openinstall 免邀请码下载
+    implementation files('libs/OpenInstall_v2.3.0.jar')
+
+    //svga
+    implementation 'com.github.yyued:SVGAPlayer-Android:2.4.0'
+
+    //渠道包 的相关依赖
+    implementation 'com.mcxiaoke.packer-ng:helper:2.0.1'
+
+    implementation 'com.github.castorflex.verticalviewpager:library:19.0.1'
+
+}
+
+
+repositories {
+    mavenCentral()
+}

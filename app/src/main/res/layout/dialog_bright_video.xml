@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android_custom="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="100dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/video_dialog_volu_progress"
+            android:orientation="horizontal">
+
+
+
+            <com.sxtx.user.widget.RoundProgressBar
+                android:id="@+id/roundProgressBar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android_custom:textIsDisplayable="false"
+                android_custom:circleR="10dp"
+                android_custom:circleColor="@color/white"
+                android_custom:mroundColor="@color/black"
+                android_custom:roundProgressColor="@color/white"
+                android_custom:style="FILL"
+                android_custom:mroundWidth="2dp"
+                android_custom:textSize="18sp"/>
+
+            <ProgressBar
+                android:id="@+id/video_brightness"
+                style="@style/video_vertical_progressBar_1"
+                android:layout_width="81dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:max="100" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

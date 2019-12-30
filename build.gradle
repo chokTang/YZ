@@ -1,0 +1,75 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+task assemble{}
+buildscript {
+    ext.kotlin_version = '1.3.50'
+    repositories {
+        maven{ url "http://maven.aliyun.com/nexus/content/groups/public/"}
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        //printbuf
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
+
+        classpath 'com.mcxiaoke.packer-ng:plugin:2.0.1'
+    }
+}
+
+allprojects {
+    repositories {
+        maven{ url "http://maven.aliyun.com/nexus/content/groups/public/"}
+        mavenCentral()
+        maven { url "https://jitpack.io" }/*添加数据库更新使用到的第三方maven*/
+        jcenter()
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    configuration = [
+            package          : "com.sxtx.user",
+            buildToolsVersion: "28.0.3",
+            compileVersion   : 28,
+            minSdk           : 19,
+            targetSdk        : 28,
+            version_code     : 28,
+            version_name     : "1.2.8"
+    ]
+
+    libraries = [
+            supportVersion    : "27.1.1",
+            constraint        : "2.0.0-alpha2",
+            junitVersion      : "4.12",
+            runner            : "1.0.2",
+            espresso_core     : "3.0.2",
+            gson              : "2.8.5",
+            logger            : "2.1.1",
+            glide             : "4.9.0",
+            SmartRefreshLayout: "1.1.0-alpha-14",
+            fragmentation     : "1.3.6",
+            retrofit2         : "2.3.0",
+            rxjava2           : "2.0.1",
+            luban             : "1.1.8",
+            greendao          : "3.2.2",
+            eventbus          : "3.1.1",
+            kotlin_version    : "1.3.21",
+            app_updater       : "1.0.4",
+            MultiFlowLayout   : "V1.1.2"
+    ]
+
+    third = [
+            QQ_APPID : "xs54235333",
+            WX_APPID : "xs166666",
+            WX_SECRET: "sahslaklaooao"
+    ]
+}

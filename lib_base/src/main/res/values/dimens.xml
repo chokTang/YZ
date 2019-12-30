@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--字体大小-->
+    <dimen name="textSize18">18sp</dimen>
+    <dimen name="textSize16">16sp</dimen>
+    <dimen name="textSize14">14sp</dimen>
+    <dimen name="textSize12">12sp</dimen>
+
+    <!--线条大小-->
+    <dimen name="lineSize">0.5dp</dimen>
+
+    <!--常用高度dp定义  整个APP通用的dp，固定值不应该写入在里面-->
+    <dimen name="app_margin">16dp</dimen><!--整个APP左右边距 距离手机边框的距离-->
+    <dimen name="app_padding">10dp</dimen><!--整个APP距离左边的边距-->
+    <dimen name="group_margin">10dp</dimen><!--分组之间的间距-->
+    <dimen name="group_item_height">25dp</dimen><!--ExpanableList中group的高度-->
+    <dimen name="single_layout_height">46dp</dimen><!--APP中单行高度-->
+    <dimen name="double_layout_height">60dp</dimen><!--APP中双行高度-->
+    <dimen name="icon_space_text">10dp</dimen><!--类似于 【图片 "文字"】这样的文字与图标的间距-->
+    <dimen name="text_space_icon">4dp</dimen><!--类似于 【textView的drawablePadding】这样的文字与图标的间距-->
+    <dimen name="text_line_space">2dp</dimen><!--字体行间距-->
+    <dimen name="side_button_width">62dp</dimen><!--list类的item中单个button侧滑宽度-->
+    <dimen name="round_img_width">64dp</dimen><!--圆形头像宽高-->
+    <dimen name="toolbar_height">44dp</dimen><!--导航栏的高度-->
+    <dimen name="member_headerImg_width">34dp</dimen><!--成员头像[以及类似与成员头像]的图片宽高度-->
+    <dimen name="app_radius_angle">4dp</dimen><!--APP中使用到圆角度数-->
+    <dimen name="btn_height">40dp</dimen><!--APP中左右按钮的高度-->
+    <dimen name="header_height">80dp</dimen><!--店铺、公司、商家列表等图片宽高度-->
+</resources>

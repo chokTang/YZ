@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+def cfg = rootProject.ext.configuration//配置
+def libs = rootProject.ext.libraries//库
+
+android {
+    compileSdkVersion cfg.compileVersion
+    buildToolsVersion cfg.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            buildConfigField("boolean", "LOG_DEBUG", "false")
+            minifyEnabled true //是否混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation "junit:junit:${libs.junitVersion}"
+    androidTestImplementation "com.android.support.test:runner:${libs.runner}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${libs.espresso_core}"
+
+    /*gson数据解析类*/
+    implementation "com.google.code.gson:gson:${libs.gson}"
+
+    /*log框架*/
+    implementation "com.orhanobut:logger:${libs.logger}"
+
+    /*图片框架*/
+    api "com.github.bumptech.glide:glide:${libs.glide}"
+    /*鲁班压缩工具*/
+    implementation "top.zibin:Luban:${libs.luban}"
+
+
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.itheima.roundedimageview.RoundedImageView
+            android:id="@+id/img_pic"
+            android:layout_width="match_parent"
+            android:layout_height="134dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            app:riv_oval="false"
+            app:riv_corner_radius="3dp"
+            android:src="@mipmap/default_pic" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_tag"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="限免"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_theme_3"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="2dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13653"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="6dp"
+            android:textColor="#ffffffff"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:background="@drawable/bg_theme_15"
+            android:drawableLeft="@mipmap/video"
+            android:drawablePadding="3dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="法拉科技疯狂拉"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:maxLength="20"
+        android:layout_marginTop="13dp"
+        android:textColor="#ff434343"
+        android:textSize="12sp"/>
+
+
+
+</LinearLayout>

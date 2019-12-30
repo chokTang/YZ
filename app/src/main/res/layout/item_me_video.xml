@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:orientation="vertical">
+        <com.itheima.roundedimageview.RoundedImageView
+            android:id="@+id/img"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            app:riv_corner_radius="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/default_pic"/>
+        <TextView
+            android:layout_marginTop="@dimen/dp_3"
+            android:id="@+id/tv_name"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="木火救援木火救援木火救援"
+            android:textColor="@color/common_color_22"
+            android:textSize="12sp"
+            android:maxLength="8"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+</LinearLayout>

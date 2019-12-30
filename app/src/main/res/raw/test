@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Teamplate name="事务" moduleId="" module="Event" ver="1.0" >
+    <TabBar>
+        <Tab id="Detail" type="Form" text="详细">
+            <Group label="">
+                <Field id="FinishDate" dataType="Date" column="1" required="1">
+                    <Label icon="" text="结束日期"></Label>
+                    <Value placeholder="选择结束日期"></Value>
+                </Field>
+                <Field id="Reminder" dataType="DateTime" column="2" required="1">
+                    <Label icon="" text="提醒时间1"></Label>
+                    <Value placeholder="选择提醒时间"></Value>
+                </Field>
+            </Group>
+            <Group label="">
+                <Field id="Checklist" dataType="Checklist" column="0" required="0">
+                    <Button text="检查表"></Button>
+                </Field>
+            </Group>
+            <Group label="">
+                <Field id="Members" dataType="MemberSelect" column="0" required="0">
+                    <Button text="成员"></Button>
+                </Field>
+            </Group>
+            <Group label="">
+                <Field id="Descr" dataType="TextBlock" column="0" required="0">
+                    <Button text="描述"></Button>
+                    <Value placeholder="输入描述"></Value>
+                </Field>
+            </Group>
+        </Tab>
+        <Tab id="Conversation" type="Common" text="动态"></Tab>
+        <Tab id="Link" type="Common" text="相关"></Tab>
+        <Tab id="Log" type="Common" text="日志"></Tab>
+    </TabBar>
+</Teamplate>

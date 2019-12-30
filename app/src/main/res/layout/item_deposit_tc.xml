@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_white_5"
+            android:gravity="center"
+            android:minWidth="105dp"
+            android:minHeight="120dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:lines="1"
+                    android:textColor="@color/c_black_gray"
+                    android:textSize="13sp"
+                    tool:text="一天" />
+
+
+                <TextView
+                    android:id="@+id/tv_des2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:lines="1"
+                    android:textColor="@color/fontColorMe"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    tool:text="首衝送一天" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_type_1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/tv_new_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#DEA759"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    tool:text="￥28" />
+
+                <TextView
+                    android:id="@+id/tv_old_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fontColor3"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tool:text="￥56" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_ka_time"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:lines="1"
+                android:text="日卡"
+                android:textColor="#DEA759"
+                android:textSize="35sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_des1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/selector_deposit_bottom"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="僅可買一次"
+                android:textColor="@color/c_orange_white"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_qp"
+            android:layout_width="53dp"
+            android:layout_height="16dp"
+            android:background="@drawable/bg_tag_deposit"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/fontColorWhite"
+            android:textSize="10sp"
+            tool:text="體驗" />
+
+    </FrameLayout>
+
+</LinearLayout>

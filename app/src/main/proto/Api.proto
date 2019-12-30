@@ -1,0 +1,609 @@
+syntax = "proto3";
+package com.lyh.protocol;
+option java_package = "com.lyh.protocol.login";
+import "PublicData.proto";
+
+//HEART_REQUEST=0x1ffff;//客户端心跳消息(每1-2分钟发一次)
+message HeartRequest{
+	string token=1;//令牌
+}
+//HEART_RESPONSE=0x1fffe;//客户端心跳消息(每1-2分钟发一次)
+message HeartResponse{
+		ResponseResult result = 1;//返回结果
+		int64 sysTime=2;//系统时间
+}
+//C_S_VERTIFY_USER_REQUEST=0x10001;//用户逻辑服验证请求
+message VertifyUserRequest{
+	string token=1;//token;
+}
+
+//S_C_VERTIFY_USER_RESPONSE=0x10002;//用户逻辑服验证返回
+message VertifyUserResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_GET_ADVERTISEMENT_LOADING_IMG_REQUEST=0x10003;//获取广告图加载页面的请求
+message GetAdvertisementLoadingImgReqeust{
+	
+}
+
+//S_C_GET_ADVERTISEMENT_LOADING_IMG_RESPONSE=0x10004;//获取广告图加载页面图的返回
+message GetAdvertisementLoadingImgResponse{
+	repeated AdvertisingData appBanner=1;//banner广告
+}
+
+/////////////////////////////////////////////////////////////
+//C_S_GET_TRUMPET_REQUEST=0x10005;//请求喇叭消息
+message GetTrumpetReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_TRUMPET_RESPONSE=0x10006;//轮播喇叭的返回
+message GetTrumpetResponse{
+	ResponseResult result = 1;//返回结果
+	TrumpetData trumpet=2;//轮播消息实体
+}
+
+//C_S_GET_RECOMMEND_PAGE_DATA_REQUEST=0x10007;//请求推荐页数据
+message GetRecommendPageDataReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_RECOMMEND_PAGE_DATA_RESPONSE=0x10008;//请求推荐页数据的返回
+message GetRecommendPageDataResponse{
+	ResponseResult result = 1;//返回结果
+	repeated AdvertisingData banner=2;//banner广告
+	repeated RecommendData recommend=3;//推荐页的分类视频
+}
+
+//C_S_GET_NEWEST_PAGE_DATA_REQUEST=0x10009;//请求最新/排行的视频数
+message GetNewestPageDataReqeust{
+	string token=1;//令牌
+	int32 type=2;//1-最新的 2排行的
+	int32 page=3;//页码 1开始
+}
+
+//S_C_GET_NEWEST_PAGE_DATA_RESPONSE=0x10010;//请求最新/排行的视频数的返回
+message GetNewestPageDataResponse{
+	ResponseResult result = 1;//返回结果
+	repeated NewestVideoData newestVideoData=2;//最新/排行的视频数
+	int64 total=3;//总数量
+	int32 page=4;//当前页
+}
+
+//C_S_GET_RECOMMEND_IN_A_BATCH_REQUEST=0x10011;//请求推荐的换一批
+message GetRecommendInABatchReqeust{
+	string token=1;//令牌
+	int64 recommendId = 2;//推荐大类的ID
+}
+
+//S_C_GET_RECOMMEND_IN_A_BATCH_RESPONSE=0x10012;//请求推荐的换一批的返回
+message GetRecommendInABatchResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData videoData=2;//换一批的视频
+}
+
+//C_S_GET_SPECIAL_PAGE_DATA_REQUEST=0x10013;//请求专题
+message GetSpecialPageDataReqeust{
+	string token=1;//令牌
+	int32 page=2;//页码 1开始
+}
+
+//S_C_GET_SPECIAL_PAGE_DATA_RESPONSE=0x10014;//请求专题的返回
+message GetSpecialPageDataResponse{
+	ResponseResult result = 1;//返回结果
+	repeated SpecialData specialData=2;//专题数据
+	int64 total=4;//总数量
+	int32 page=5;//当前页
+}
+
+//C_S_GET_THREE_BIG_VIDEO_PAGE_DATA_REQUEST=0x10015;//请求三大数据
+message GetThreeBigVideoPageDataReqeust{
+	string token=1;//令牌
+	int32 type=2;//1-国产 2日韩 3欧美
+	int32 page=3;//页码 1开始
+}
+
+//S_C_GET_THREE_BIG_VIDEO_PAGE_DATA_RESPONSE=0x10016;//请求推荐页数据的返回
+message GetThreeBigVideoPageDataResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ThreeBigVideoData threeBigVideo=3;//推荐页的分类视频
+	int64 total=4;//总数量
+	int32 page=5;//当前页
+}
+
+//C_S_GET_SPECIAL_MORE_VIDEO_REQUEST=0x10017;//点击专题进入专题的更多
+message GetSpecialMoreVideoReqeust{
+	string token=1;//令牌
+	int64 specialId=2;//专题的ID
+	int32 page=3;//页码 1开始
+}
+
+//S_C_GET_SPECIAL_MORE_VIDEO_RESPONSE=0x10018;//点击专题进入专题的更多的返回
+message GetSpecialMoreVideoResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData threeBigVideo=2;//视频
+	int64 specialId=3;//专题的ID
+	int64 total=4;//总数量
+	int32 page=5;//当前页
+	string specialName=6;//专题名称
+	
+}
+
+//C_S_GET_THREE_BIG_MORE_VIDEO_REQUEST=0x10019;//点击三大分类的更多
+message GetThreeBigMoreVideoReqeust{
+	string token=1;//令牌
+	int64 threeBigDataId=2;//三大分类的id
+	int32 page=3;//页码 1开始
+}
+
+//S_C_GET_THREE_BIG_MORE_VIDEO_RESPONSE=0x10020;//点击三大分类的更多的返回
+message GetThreeBigMoreVideoResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData threeBigVideo=2;//视频
+	int64 threeBigDataId=3;//三大分类的id
+	int64 total=4;//总数量
+	int32 page=5;//当前页
+	string specialName=6;//分类名称
+	
+}
+
+//C_S_GET_PLAY_VIDEO_REQUEST=0x10021;//点击播放视频
+message GetpPlayVideoReqeust{
+	string token=1;//令牌
+	int64 videoId=2;//视频ID
+}
+
+//S_C_GET_PLAY_VIDEO_RESPONSE=0x10022;//点击播放视频的返回
+message GetPlayVideoResponse{
+	ResponseResult result = 1;//返回结果
+	PlayVideoData playVideoData=2;//视频数据
+}
+
+//C_S_CLICK_SEARCH_REQUEST=0x10023;//点击搜索框
+message ClickSearchReqeust{
+	string token=1;//令牌
+}
+
+//S_C_CLICK_SEARCH_RESPONSE=0x10024;//点击搜索框的返回
+message ClickSearchResponse{
+	ResponseResult result = 1;//返回结果
+	repeated string sysKeyWord=2;//系统关键字
+	repeated string apiUserKeyWord=3;//玩家的关键字
+}
+
+//C_S_CLICK_REMOVE_RECORD_REQUEST=0x10025;//清除搜索记录
+message ClickRemoveRecordReqeust{
+	string token=1;//令牌
+}
+
+//S_C_CLICK_REMOVE_RECORD_RESPONSE=0x10026;//清除搜索记录的返回
+message ClickRemoveRecordResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_SURE_SEARCH_KEYWORD_REQUEST=0x10027;//确认搜索
+message SureSearchKeyWordReqeust{
+	string token=1;//令牌
+	string keyWord=2;//关键字
+}
+
+//S_C_SURE_SEARCH_KEYWORD_RESPONSE=0x10028;//确认搜索的返回
+message SureSearchKeyWordResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData video=2;//视频
+}
+
+//C_S_CHECK_HISTORY_RECORD_REQUEST=0x10029;//历史记录查询
+message CheckHistroyRecrdReqeust{
+	string token=1;//令牌
+}
+
+//S_C_CHECK_HISTORY_RECORD_RESPONSE=0x10030;//历史记录查询的返回
+message CheckHistroyRecrdResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData video=2;//视频
+}
+
+//C_S_DELETE_HISTORY_RECORD_REQUEST=0x10031;//删除历史记录
+message DeleteHistroyRecrdReqeust{
+	string token=1;//令牌
+	repeated LongData videoId=2;//视频的ID
+}
+
+//S_C_DELETE_HISTORY_RECORD_RESPONSE=0x10032;//删除历史记录的返回
+message DeleteHistroyRecrdResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_CHECK_COLLECT_RECORD_REQUEST=0x10033;//收藏查询
+message CheckCollectRecrdReqeust{
+	string token=1;//令牌
+}
+
+//S_C_CHECK_COLLECT_RECORD_RESPONSE=0x10034;//收藏查询的返回
+message CheckCollectRecrdResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData video=2;//视频
+}
+
+//C_S_DELETE_COLLECT_RECORD_REQUEST=0x10035;//删除收藏记录
+message DeleteCollectRecrdReqeust{
+	string token=1;//令牌
+	int64 videoId=2;//视频的ID
+}
+
+//S_C_DELETE_COLLECT_RECORD_RESPONSE=0x10036;//删除收藏记录的返回
+message DeleteCollectRecrdResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_GET_API_USER_INFO_REQUEST=0x10037;//请求我的信息
+message GetApiUserInfoReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_API_USER_INFO_RESPONSE=0x10038;//请求我的信息的返回
+message GetApiUserInfoResponse{
+	ResponseResult result = 1;//返回结果
+	ApiUserData info = 2;//用户信息
+	repeated AdvertisingData infoBanner=3;//个人信息的广告
+}
+
+//C_S_CLICK_MY_MESSAGE_REQUEST=0x10039;//请求我的消息
+message ClickMyMessageReqeust{
+	string token=1;//令牌
+	int32 page=2;//页码 1开始
+}
+
+//S_C_CLICK_MY_MESSAGE_RESPONSE=0x10040;//请求我的消息的返回
+message ClickMyMessageResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ApiUserMessage listMessage = 2;//消息集合
+	int64 total=3;//总数量
+	int32 page=4;//当前页
+}
+
+//C_S_INVITECODE_BIND_REQUEST=0x10041;//请求绑定邀请码
+message InviteCodeReqeust{
+	string token=1;//令牌
+	string inviteCode=2;//邀请码
+}
+
+//S_C_INVITECODE_BIND_RESPONSE=0x10042;//请求绑定邀请码的返回
+message InviteCodeResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_MOBILE_BIND_REQUEST=0x10043;//请求绑定手机
+message MobileCodeReqeust{
+	string token=1;//令牌
+	string mobile=2;//手机
+	string password=3;//密码
+	string code=4;//验证码
+}
+
+//S_C_MOBILE_BIND_RESPONSE=0x10044;//请求绑定手机的返回
+message MobileCodeResponse{
+	ResponseResult result = 1;//返回结果
+	string password = 2;//初始位置登录密码
+}
+
+
+//C_S_GET_QR_CODE_REQUEST=0x10045;//请求二维码
+message GetQrCodeReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_QR_CODE_RESPONSE=0x10046;//请求二维码的返回
+message GetQrCodeResponse{
+	ResponseResult result = 1;//返回结果
+	QrCodeData qrCode = 2;//二维码
+}
+
+//C_S_GET_TASK_REQUEST=0x10047;//请求任务
+message GetTaskReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_TASK_RESPONSE=0x10048;//请求任务的返回
+message GetTaskResponse{
+	ResponseResult result = 1;//返回结果
+	repeated InviteData inviteTask = 2;//邀请任务数据
+	repeated CommomData commomTask = 3;//邀请任务数据
+}
+
+//C_S_GET_TASK_AWARD_REQUEST=0x10049;//请求领取任务奖励
+message GetTaskAwardReqeust{
+	string token=1;//令牌
+	int64 dataId=2;//任务ID
+}
+
+//S_C_GET_TASK_AWARD_RESPONSE=0x10050;//请求领取任务奖励的返回
+message GetTaskAwardResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_SAVE_QR_CODE_REQUEST=0x10051;//请求保存二维码
+message SaveQrCodeReqeust{
+	string token=1;//令牌
+}
+
+//S_C_SAVE_QR_CODE_RESPONSE=0x10052;//请求保存二维码的返回
+message SaveQrCodeResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_GET_PAY_DATA_REQUEST=0x10053;//请求充值数据
+message GetPayDataReqeust{
+	string token=1;//令牌
+	int32 count=2;//1-才计算
+}
+
+//S_C_GET_PAY_DATA_RESPONSE=0x10054;//请求充值数据的返回
+message GetPayDataResponse{
+	ResponseResult result = 1;//返回结果
+	int32 topYpType = 2;//1-选普通 2-卡密
+	NormalTopUpData normalTop = 3;//普通充值数据
+	KaMiData kaMi = 4;//Kami充值数据
+	int32 isMobile = 5;//1-绑定手机 2-没有绑定
+	int32 isPopup = 6;//1-弹出框 2-不弹出
+}
+
+//C_S_RECHARGE_RECORD_REQUEST=0x10055;//请求充值记录
+message RechargeRecordReqeust{
+	string token=1;//令牌
+	int32 page=2;//页码 1开始
+}
+
+//S_C_RECHARGE_RECORD_RESPONSE=0x10056;//请求充值记录的返回
+message RechargeRecordResponse{
+	ResponseResult result = 1;//返回结果
+	repeated RechargeRecordData record= 2;//充值记录
+	int64 total=3;//总数量
+	int32 page=4;//当前页
+}
+
+//C_S_EXCHAGE_KAMI_REQUEST=0x10057;//请求兑换卡密
+message ExchageKaMiReqeust{
+	string token=1;//令牌
+	string kaMi=2;//kami 
+}
+
+//S_C_EXCHAGE_KAMI_RESPONSE=0x10058;//请求兑换卡密的返回
+message ExchageKaMiResponse{
+	ResponseResult result = 1;//返回结果
+	string vipTime=2;//兑换成功后有显示 VIP的到期时间
+}
+//C_S_CLICK_COLLECT_REQUEST=0x10059;//请求 收藏
+message ClickCollectReqeust{
+	string token=1;//令牌
+	int64 videoId=2;//视频ID 
+}
+
+//S_C_CLICK_COLLECT_RESPONSE=0x10060;//请求 收藏的返回
+message ClickCollectResponse{
+	ResponseResult result = 1;//返回结果
+	int32 type=2;//1-当前为收藏 2-当前为没有收藏
+}
+//C_S_CLICK_NOTICE_REQUEST=0x10061;//请求 公告
+message ClickNoticeReqeust{
+	string token=1;//令牌
+}
+
+//S_C_CLICK_NOTICE_RESPONSE=0x10062;//请求 公告的返回
+message ClickNoticeResponse{
+	ResponseResult result = 1;//返回结果
+	NoticeData notice = 2;//公告 有可能为null
+}
+
+//C_S_AUTO_PLAY_REQUEST=0x10063;//请求 自动播放
+message AutoPlayReqeust{
+	string token=1;//令牌
+}
+
+//S_C_AUTO_PLAY_RESPONSE=0x10064;//请求 自动播放
+message AutoPlayResponse{
+	ResponseResult result = 1;//返回结果
+	int32 autoPlay = 2;//1-当前为自动播放 2-当前为不自动播放
+}
+
+//C_S_MODIFY_AUTO_PLAY_REQUEST=0x10065;//修改 自动播放
+message ModifyAutoPlayReqeust{
+	string token=1;//令牌
+}
+
+//S_C_MODIFY_AUTO_PLAY_RESPONSE=0x10066;//修改 自动播放
+message ModifyAutoPlayResponse{
+	ResponseResult result = 1;//返回结果
+	int32 autoPlay = 2;//1-当前为自动播放 2-当前为不自动播放
+}
+
+//C_S_GET_APP_VERSION_REQUEST=0x10067;//请求版本号
+message GetAppVersionReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_APP_VERSION_RESPONSE=0x10068;//请求版本号 返回
+message GetAppVersionResponse{
+	ResponseResult result = 1;//返回结果
+	string androinVersion = 2;//app版本号
+	string iosVersion = 3;//app版本号
+	string androinAddress = 4;//Android下载地址
+	string iosAddress = 5;//ios下载地址
+	string content = 6;//更新内容
+	string title = 7;//更新标题
+}
+
+//C_S_CLICK_AD_REQUEST=0x10069;//点击广告
+message ClickAdReqeust{
+	string token=1;//令牌
+	int64 id=2;//广告ID
+}
+
+//S_C_CLICK_AD_RESPONSE=0x10070;//点击广告 返回
+message ClickAdResponse{
+	ResponseResult result = 1;//返回结果
+}
+//C_S_WATCH_VIDEO_REQUEST=0x10071;//观看视频的时间
+message WatichVideoReqeust{
+	string token=1;//令牌
+	int64 time=2;//分钟数
+}
+
+//S_C_WATCH_VIDEO_RESPONSE=0x10072;//观看视频的时间 返回
+message WatichVideoResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_GET_RECOMMEND_THE_HOST_REQUEST=0x10073;//请求主播
+message GetRecommedThrHostReqeust{
+	string token=1;//令牌
+	int32 page=2;//页码 1开始
+	string platform=3;//那个平台 不传为请求推荐主播
+}
+
+//S_C_GET_RECOMMEND_THE_HOST_RESPONSE=0x10074;//请求主播 返回
+message GetRecommedThrHostResponse{
+	ResponseResult result = 1;//返回结果
+	repeated AnchorData data=2;//主播数据
+	int64 total=3;//总数量
+	int32 page=4;//当前页
+}
+
+//C_S_GET_LIVE_PLATFORM_REQUEST=0x10075;//请求直播
+message GetLivePlatformReqeust{
+	string token=1;//令牌
+	int32 page=2;//页码 1开始
+}
+
+//S_C_GET_LIVE_PLATFORM_RESPONSE=0x10076;//请求直播 返回
+message GetLivePlatformResponse{
+	ResponseResult result = 1;//返回结果
+	repeated PlatformData data=2;//平台数据
+	int64 total=3;//总数量
+	int32 page=4;//当前页
+}
+//C_S_WATCH_LIVE_REQUEST=0x10077;//观看直播的时间
+message WatichLiveReqeust{
+	string token=1;//令牌
+	int64 time=2;//分钟数
+}
+
+//S_C_WATCH_LIVE_RESPONSE=0x10078;//观看直播的时间 返回
+message WatichLiveResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+//C_S_GET_LIVE_FREE_TIME_REQUEST=0x10079;//请求直播免费时间
+message GetLiveFreeTimeReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_LIVE_FREE_TIME_RESPONSE=0x10080;//请求直播免费时间 返回
+message GetLiveFreeTimeResponse{
+	ResponseResult result = 1;//返回结果
+	int64 time=2;//免费时间毫秒
+	int32 isVip=3;//1-是
+}
+//S_C_BREAK_LINE_RESPONSE=0x10081;//接受到该协议为断线
+message BreakLineResponse{
+	string message=1;//消息提示
+}
+
+//C_S_LIKE_TO_TRAMPLE_REQUEST=0x10082;//用户 请求踩或者点赞
+message LikeToTrampleReqeust{
+	string token=1;//令牌
+	int32 type=2;//1-点赞 2-踩
+	int64 videoId=3;//视频ID 
+}
+
+//S_C_LIKE_TO_TRAMPLE_RESPONSE=0x10083;//用户 请求踩或者点赞 返回
+message LikeToTrampleResponse{
+	ResponseResult result = 1;//返回结果
+	string likeNumber = 2;//点赞次数
+	string trampleNumber = 3;//踩次数
+	string giveMark = 4;//评分
+	int32 likeToTrample =5;//0-都不亮 1-点赞高亮 2-踩高亮 
+}
+//C_S_GET_MY_TOP_ACOUNT_REQUEST=0x10084;//请求找回账号
+message GetMyTopAcountReqeust{
+	string token=1;//令牌
+	string mobile=2;//手机
+	string password=3;//密码
+	string code=4;//验证码 暂时不用
+}
+
+//S_C_GET_MY_TOP_ACOUNT_RESPONSE=0x10085;//请求找回账号 返回
+message GetMyTopAcountResponse{
+	ResponseResult result = 1;//返回结果
+	string deviceId=2;//设备ID
+	string password = 3;//初始位置登录密码
+}
+
+//C_S_MODIFY_PASSWORD_REQUEST=0x10086;//请求修改密码
+message ModifyPasswordReqeust{
+	string token=1;//令牌
+	string mobile=2;//手机
+	string password=3;//密码
+	string code=4;//验证码 暂时不用
+	string newPassword=5;//新的密码
+}
+
+//S_C_MODIFY_PASSWORD_RESPONSE=0x10087;//请求修改密码 返回
+message GetModifyPasswordResponse{
+	ResponseResult result = 1;//返回结果
+	string password = 2;//初始位置登录密码
+}
+
+//C_S_GET_FILTER_DATA_REQUEST=0x10088;//请求筛选的数据
+message GetFilterDataReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_FILTER_DATA_RESPONSE=0x10089;//请求筛选的数据 返回
+message GetFilterDataResponse{
+	ResponseResult result = 1;//返回结果
+	repeated FilterListData listFilterData = 2;//所有筛选的数据
+}
+
+//C_S_GET_FILTER_VIDEO_DATA_REQUEST=0x10090;//请求筛选的视频数据
+message GetFilterVideoDataReqeust{
+	string token=1;//令牌
+	repeated LongData videoId=2;//晒的ID
+	int32 page=3;//页码 1开始
+}
+
+//S_C_GET_FILTER_VIDEO_DATA_RESPONSE=0x10091;//请求筛选的视频数据 返回
+message GetFilterVideoDataResponse{
+	ResponseResult result = 1;//返回结果
+	repeated ClassifyVideoData videoData=3;//视频数据
+	int64 total=4;//总数量
+	int32 page=5;//当前页
+}
+
+
+// C_S_GET_QR_CODE_RETRIEVE_PASSWORD_REQUEST=0x10092;//请求二维码找回密码
+message GetRrCodeRetrievePasswordReqeust{
+	string token=1;//令牌
+    string key=2;//二维码字符串
+}
+
+//S_C_GET_QR_CODE_RETRIEVE_PASSWORD_RESPONSE=0x10093;//请求二维码找回密码 返回
+message GetRrCodeRetrievePasswordResponse{
+	ResponseResult result = 1;//返回结果
+}
+
+
+
+//C_S_GET_QR_CODE_KEY_REQUEST=0x10094;//请求二维码凭证
+message GetQrcodeKeyReqeust{
+	string token=1;//令牌
+}
+
+//S_C_GET_QR_CODE_KEY_RESPONSE=0x10095;//请求二维码凭证 返回
+message GetQrcodeKeyResponse{
+	ResponseResult result = 1;//返回结果
+	string key=2;//二维码字符串
+	string homeUrl=3;//官网
+}

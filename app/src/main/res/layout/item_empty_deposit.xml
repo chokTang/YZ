@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/empty_tv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/text_line_space"
+        android:text="暫無充值通道，請選擇其他充值方式"
+        android:textColor="@color/theme"
+        android:textSize="@dimen/textSize14"
+        tools:text="暫無充值通道，請選擇其他充值方式" />
+</LinearLayout>

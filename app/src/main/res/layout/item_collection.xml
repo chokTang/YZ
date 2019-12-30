@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_select"
+        android:layout_width="50dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_record" />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_pic"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/ll_select"
+        android:layout_height="wrap_content">
+        <com.itheima.roundedimageview.RoundedImageView
+            android:id="@+id/img_pic"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            app:riv_corner_radius="3dp"
+            app:riv_oval="false"
+            android:src="@mipmap/default_pic" />
+        <com.itheima.roundedimageview.RoundedImageView
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            app:riv_corner_radius="3dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            app:riv_oval="false"
+            android:src="@mipmap/icon_gradient_bg" />
+        <RelativeLayout
+            android:layout_width="@dimen/dp_160"
+            android:layout_height="@dimen/dp_80">
+            <LinearLayout
+                android:id="@+id/ll_eye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_alignParentBottom="true"
+                >
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="12dp"
+                    android:src="@mipmap/icon_eye_white"
+                    />
+                <TextView
+                    android:id="@+id/tv_watch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_2"
+                    android:text="11"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    />
+            </LinearLayout>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_tag"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="限免"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_theme_3"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="2dp"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.8"
+                android:textColor="#FE434A"
+                android:textSize="14sp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                />
+            <TextView
+                android:id="@+id/tv_video_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/fontColorTop"
+                android:textSize="12sp"
+                tool:text="3:33" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/fl_pic"
+        android:layout_toLeftOf="@+id/ll_collection"
+        android:ellipsize="end"
+        android:maxLength="16"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:text="法拉科技疯狂拉"
+        android:textColor="@color/fontColorblack"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_toRightOf="@id/fl_pic"
+        android:layout_toLeftOf="@+id/ll_collection"
+        android:text="2019/08/08 发布"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="10dp"
+        android:textColor="#A8A8A8"
+        android:textSize="12sp"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_collection"
+        android:layout_width="50dp"
+        android:layout_height="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/img_collection"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/selector_home_collection"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

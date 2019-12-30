@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_position"
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:text="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/bg_red_left_radius_5dp"
+            android:textColor="@color/fontColorWhite"
+            android:textSize="25sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_6"
+            android:paddingBottom="@dimen/dp_6"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_white_right_radius_5dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="21dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通过微信群分享"
+                    android:textColor="@color/color_434343"
+                    android:lines="1"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="把柚子APP二維碼或者邀請鏈接分享到微信"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_434343"
+                    android:textSize="10sp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/img_type"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

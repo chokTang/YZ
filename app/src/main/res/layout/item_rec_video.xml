@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="105dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.itheima.roundedimageview.RoundedImageView
+                android:id="@+id/img_pic"
+                android:layout_width="160dp"
+                android:layout_height="105dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="3dp"
+                app:riv_oval="false"
+                android:src="@mipmap/default_pic" />
+            <com.itheima.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:riv_corner_radius="3dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                app:riv_oval="false"
+                android:src="@mipmap/icon_gradient_bg" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_tag"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="限免"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_theme_3"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_length"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="38集全"
+                    android:textColor="@color/fontColorWhite"
+                    android:textSize="12sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="6dp"/>
+                <LinearLayout
+                    android:id="@+id/ll_eye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="6dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dp_4">
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="9dp"
+                        android:src="@mipmap/icon_eye_white"
+                        />
+                    <TextView
+                        android:id="@+id/tv_watch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:textColor="@color/white"
+                        android:textSize="9sp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="2dp"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9.8"
+                    android:textColor="#FE434A"
+                    android:textSize="14sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    />
+            </RelativeLayout>
+        </FrameLayout>
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="法拉科技疯狂拉升减肥"
+            android:textColor="#2E2E2E"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2019/08/08 发布"
+            android:layout_marginTop="10dp"
+            android:textColor="#A8A8A8"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_collection"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:gravity="right">
+        <ImageView
+            android:id="@+id/img_collection"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/selector_home_collection"/>
+
+    </LinearLayout>
+</LinearLayout>

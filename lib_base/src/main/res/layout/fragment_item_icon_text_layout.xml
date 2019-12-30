@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/bottom_item_icon_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/shadow_bottom" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/bottom_item_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/textSize14"
+            tools:text="测试" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bottom_item_number_tv"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignRight="@+id/ll_content"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/shape_red_round"
+        android:gravity="center"
+        android:text="150"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:visibility="gone" />
+</RelativeLayout>
